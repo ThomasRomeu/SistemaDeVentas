@@ -75,10 +75,10 @@ namespace SistemaVenta.DAL.Implementacion
             }
         }
 
-        public async Task<IEnumerable<TEntity>> Consultar(Expression<Func<TEntity, bool>> filtro = null)
+        public async Task<IQueryable<TEntity>> Consultar(Expression<Func<TEntity, bool>> filtro = null)
         {
             IQueryable<TEntity> queryEntidad = filtro == null ? _dbContext.Set<TEntity>() : _dbContext.Set<TEntity>().Where(filtro);
-            return await queryEntidad.ToListAsync();
+            return queryEntidad;
         }
 
     }
